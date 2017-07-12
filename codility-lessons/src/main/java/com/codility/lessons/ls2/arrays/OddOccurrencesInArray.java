@@ -37,6 +37,9 @@ Elements of input arrays can be modified.
  */
 package com.codility.lessons.ls2.arrays;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author user
@@ -45,7 +48,22 @@ public class OddOccurrencesInArray {
 
     public static void main(String[] args) {
 
+        OddOccurrencesInArray array = new OddOccurrencesInArray();
+
+        int a[] = {9, 3, 9, 3, 9, 7, 9};
+
+        System.out.println(array.solution(a));
     }
-    
-    
+
+    public int solution(int[] a) {
+        Map<Integer, Integer> temps = new HashMap<>();
+        for (int element : a) {
+            Integer putted = temps.put(element, 1);
+            if (putted != null) {
+                temps.remove(element);
+            }
+        }
+        return temps.keySet().iterator().next();
+    }
+
 }
